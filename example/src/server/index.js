@@ -1,6 +1,6 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
+const { buildSchema, getIntrospectionQuery, graphql } = require('graphql');
 const cors = require('cors');
 
 // Construct a schema, using GraphQL schema language
@@ -44,5 +44,13 @@ app.use(
     graphiql: true,
   }),
 );
+app.get(
+  '/schema',
+  async (_req, res) => {
+    const source = getIntrospectionQuery();
+    const { data } = await graphql({ source, schema });
+    res.send({ schema: data });
+  }
+)
 app.listen(4000);
 console.log('Running a GraphQL API server at http://localhost:4000/graphql');

@@ -29,6 +29,7 @@ module.exports = {
     '@typescript-eslint/no-namespace': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-unused-vars': [0],
+    '@typescript-eslint/explicit-module-boundary-types': 0,
     'react/prop-types': [0],
     'import/order': [
       'error',

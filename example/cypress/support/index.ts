@@ -1,3 +1,1 @@
-import { registerGraphQL } from '../../../dist';
-
-registerGraphQL();
+import '../../../build';

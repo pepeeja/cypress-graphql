@@ -3,7 +3,9 @@ import { buildClientSchema, buildSchema, graphql, GraphQLSchema } from 'graphql'
 import { MockOptions, RequestPayload } from '../types';
 
 export class GraphQLMockUtil {
-  public static mock(operation: string, response: unknown, options: MockOptions, schema: GraphQLSchema): void {
+  public static mock(operation: string, response: unknown, options: MockOptions, schema: GraphQLSchema | null): void {
+    if (!schema) throw new Error('GraphQL schema is not defined');
+
     cy.intercept({ ...options }, async (req) => {
       const { operationName, query, variables }: RequestPayload = req.body;
 
@@ -36,15 +38,17 @@ export class GraphQLMockUtil {
     return buildSchema(schemaString);
   }
 
-  public static schemaFromUrl(url: string): GraphQLSchema {
-    let schema: GraphQLSchema | null = null;
-    cy.request({
-      method: 'GET',
-      url,
-    }).then((response) => {
-      schema = buildClientSchema(response.body.schema);
-    });
+  public static clientSchemaFromString(schemaString: string): GraphQLSchema {
+    return buildClientSchema(JSON.parse(schemaString));
+  }
 
-    return schema!;
+  public static schemaStringFromUrl(url: string): Promise<string> {
+    return fetch(url)
+      .then((data) => {
+        return data.json();
+      })
+      .then((res) => {
+        return res.schema;
+      });
   }
 }

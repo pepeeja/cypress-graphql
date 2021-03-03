@@ -10,8 +10,8 @@ declare global {
   }
 }
 
-export const registerGraphQL = (): void => {
+((): void => {
   Cypress.Commands.add('graphqlContext', new GraphQLContextCommand().command);
   Cypress.Commands.add('graphqlConfig', new GraphQLConfigCommand().command);
   Cypress.Commands.add('graphqlMock', new GraphQLMockCommand().command);
-};
+})();

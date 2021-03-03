@@ -6,7 +6,7 @@ import { AbstractCommand } from './abstract.command';
 type GraphQLMockContextProvider = (gql: GraphQLMockContext) => void;
 
 export class GraphQLContextCommand extends AbstractCommand {
-  public command(gql: GraphQLMockContextProvider): void {
+  public command(gql: GraphQLMockContextProvider) {
     gql(new GraphQLMockContext());
     return;
   }
@@ -26,7 +26,8 @@ class GraphQLMockContext {
   }
 
   public schemaFromUrl(url: string): this {
-    return this.schema(GraphQLMockUtil.schemaFromUrl(url));
+    // return this.schema(GraphQLMockUtil.schemaFromUrl(url));
+    return this;
   }
 
   public schema(schema: GraphQLSchema): this {
