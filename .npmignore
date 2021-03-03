@@ -1,0 +1,14 @@
+# Editor config
+.vscode/
+
+# Example folder
+example/
+
+# Source files
+src/
+
+# Config files
+.eslintignore
+.prettierrc
+.eslintrc.js
+tsconfig.json

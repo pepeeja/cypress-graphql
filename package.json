@@ -1,0 +1,60 @@
+{
+  "name": "@pepeeja/cypress-graphql",
+  "version": "0.0.1",
+  "private": false,
+  "author": "Vladislav Shukelait",
+  "description": "Mocking GraphQL queries in Cypress tests",
+  "main": "./build/index.js",
+  "keywords": [
+    "cypress",
+    "graphql",
+    "mock"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepeeja/cypress-graphql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pepeeja/cypress-graphql/issues"
+  },
+  "scripts": {
+    "release": "nm run clear && npm run build && npm publish build --tag next",
+    "clear": "rimraf build",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint --quiet --fix src/**"
+  },
+  "peerDependencies": {
+    "cypress": ">=3",
+    "graphql": ">=15"
+  },
+  "devDependencies": {
+    "@types/node": "14.14.25",
+    "@typescript-eslint/eslint-plugin": "4.15.0",
+    "@typescript-eslint/parser": "4.15.0",
+    "cypress": "6.5.0",
+    "eslint": "7.19.0",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-import-resolver-webpack": "0.13.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "graphql": "15.5.0",
+    "husky": "5.0.9",
+    "prettier": "2.2.1",
+    "rimraf": "3.0.2",
+    "typescript": "4.1.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run format"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=12.14.0",
+    "npm": ">=6.13.0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "outDir": "build",
+    "lib": ["ES2015", "dom"],
+    "types": ["cypress"],
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

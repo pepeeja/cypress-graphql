@@ -1,0 +1,14 @@
+# build artefacts
+coverage/*
+
+# example directory
+example/
+
+# data definition files
+**/*.d.ts
+
+# 3rd party libs
+/node_modules
+/app/public
+/app/node_modules
+/e2e/node_modules
