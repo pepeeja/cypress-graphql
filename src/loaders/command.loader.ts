@@ -1,11 +1,14 @@
 import { GraphQLContextCommand, GraphQLConfigCommand, GraphQLMockCommand } from '../commands';
 
+// eslint-disable-next-line @typescript-eslint/ban-types
+type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any ? A : never;
+
 declare global {
   namespace Cypress {
     interface Chainable {
-      graphqlContext: GraphQLContextCommand['command'];
-      graphqlConfig: GraphQLConfigCommand['command'];
-      graphqlMock: GraphQLMockCommand['command'];
+      graphqlContext: (...args: ArgumentTypes<GraphQLContextCommand['command']>) => Cypress.Chainable;
+      graphqlConfig: (...args: ArgumentTypes<GraphQLConfigCommand['command']>) => Cypress.Chainable;
+      graphqlMock: (...args: ArgumentTypes<GraphQLMockCommand['command']>) => Cypress.Chainable;
     }
   }
 }

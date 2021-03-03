@@ -1,6 +1,6 @@
 {
   "name": "@pepeeja/cypress-graphql",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "author": "Vladislav Shukelait",
   "description": "Mocking GraphQL queries in Cypress tests",

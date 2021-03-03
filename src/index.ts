@@ -1,1 +1,1 @@
-export * from './loaders';
+import './loaders';
