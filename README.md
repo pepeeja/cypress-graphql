@@ -1,6 +1,6 @@
 # @pepeeja/cypress-graphql
 
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/pepeeja/cypress-graphql/blob/main/LICENSE) [![npm latest package](https://img.shields.io/npm/v/@pepeeja/cypress-graphql/latest.svg)](https://www.npmjs.com/package/@pepeeja/cypress-graphql)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/pepeeja/cypress-graphql/blob/main/LICENSE) [![npm latest package](https://img.shields.io/npm/v/@pepeeja/cypress-graphql/latest.svg)](https://www.npmjs.com/package/@pepeeja/cypress-graphql) [![npm type definitions](https://img.shields.io/npm/types/@pepeeja/cypress-graphql)](https://github.com/pepeeja/cypress-graphql/search?l=typescript)
 
 ## Install
 

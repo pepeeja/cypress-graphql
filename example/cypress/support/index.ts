@@ -1,1 +1,1 @@
-import '../../../build';
+import '@pepeeja/cypress-graphql';
