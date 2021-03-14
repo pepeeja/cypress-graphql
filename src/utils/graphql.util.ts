@@ -6,7 +6,15 @@ export class GraphQLMockUtil {
   public static mock(operation: string, response: unknown, options: MockOptions, schema: GraphQLSchema | null): void {
     if (!schema) throw new Error('GraphQL schema is not defined');
 
+    let executionCount = 0;
+
     cy.intercept({ ...options }, async (req) => {
+      executionCount += 1;
+
+      if (options.times !== 0 && executionCount > options.times!) {
+        return;
+      }
+
       const { operationName, query, variables }: RequestPayload = req.body;
 
       if (operation !== operationName) return;
@@ -27,7 +35,7 @@ export class GraphQLMockUtil {
 
       const staticResponse: StaticResponse = {
         body,
-        delay: 0,
+        delay: options.delay,
       };
 
       req.reply(staticResponse);

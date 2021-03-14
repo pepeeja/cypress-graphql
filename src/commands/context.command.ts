@@ -25,11 +25,6 @@ class GraphQLMockContext {
     return this.schema(GraphQLMockUtil.schemaFromString(schemaString));
   }
 
-  public schemaFromUrl(url: string): this {
-    // return this.schema(GraphQLMockUtil.schemaFromUrl(url));
-    return this;
-  }
-
   public schema(schema: GraphQLSchema): this {
     this._schema = schema;
     return this;
