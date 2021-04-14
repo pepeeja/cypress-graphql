@@ -46,4 +46,35 @@ describe('GraphQL Mock Global Config', () => {
       .first()
       .contains('John Doe');
   });
+
+  it('should has unique count per operation', () => {
+    cy.graphqlMock(
+      'GetBooks',
+      {
+        books: [
+          {
+            id: 1,
+            title: 'Test title',
+            author: 'Test author',
+          },
+        ],
+      },
+      { times: 2, forceMock: true },
+    );
+    
+    cy.graphqlMock(
+      'GetBooksFake',
+      {},
+      { times: 1 },
+    );
+
+    cy.visit('http://localhost:3000')
+      .get('[data-cy=book]')
+      .should('have.length', 1)
+      .contains('Test title')
+      .reload()
+      .get('[data-cy=book]')
+      .should('have.length', 1)
+      .contains('Test title')
+  });
 });

@@ -1,1 +1,3 @@
-import '@pepeeja/cypress-graphql';
+import '../../../src/index';
+
+// import '@pepeeja/cypress-graphql';
