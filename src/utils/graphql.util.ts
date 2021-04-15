@@ -2,38 +2,30 @@ import { StaticResponse } from 'cypress/types/net-stubbing';
 import { buildClientSchema, buildSchema, graphql, GraphQLSchema } from 'graphql';
 import { MockOptions, RequestPayload } from '../types';
 
-const executionCount: Record<string, number> = {};
-
 export class GraphQLMockUtil {
   public static mock(operation: string, response: unknown, options: MockOptions, schema: GraphQLSchema | null): void {
     if (!schema) throw new Error('GraphQL schema is not defined');
 
+    const executionCount: Record<string, number> = {};
+
     executionCount[operation] = 0;
 
     cy.intercept({ ...options }, async (req) => {
-      executionCount[operation] += 1;
-      console.log(
-        'updating executionCount to ',
-        executionCount[operation],
-        ' by operation ',
-        operation,
-        ' ',
-        options.times,
-      );
-
-      if (options.times !== 0 && executionCount[operation] > options.times!) {
-        console.warn(
-          `GraphQL operation ${operation} exceeded maximal number of executions and original query will be called instead`,
-        );
-        return;
-      }
-
       const { operationName, query, variables }: RequestPayload = req.body;
 
       if (operation !== operationName) {
         if (options.forceMock) {
           throw new Error(`GraphQL operation ${operationName} doesn't have mock, but flag forceMock was enabled`);
         }
+        return;
+      }
+
+      executionCount[operation] += 1;
+
+      if (options.times !== 0 && executionCount[operation] > options.times!) {
+        console.warn(
+          `GraphQL operation ${operation} exceeded maximal number of executions and original query will be called instead`,
+        );
         return;
       }
 
